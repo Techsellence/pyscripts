@@ -146,7 +146,3 @@ def get_kite_client():
     kite_client = KiteConnect(api_key=api_key)
     kite_client.set_access_token(access_token)
     return kite_client
-
-if __name__ == "__main__":
-    holdings = get_kite_client().holdings()
-    logger.info("Fetched Holdings: %s", holdings)
