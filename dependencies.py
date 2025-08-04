@@ -2,6 +2,7 @@
 import csv
 import logging
 import os
+import tempfile
 
 import boto3
 import pandas as pd
@@ -66,7 +67,7 @@ def get_s3_client():
 def extract_access_token():
     try:
         # Download CSV from S3 to a temporary file
-        local_file_path = f"/tmp/{os.path.basename(ACCESS_TOKEN_FILE_PATH)}"
+        local_file_path = os.path.join(tempfile.gettempdir(), os.path.basename(ACCESS_TOKEN_FILE_PATH))
         get_s3_client().download_file(ACCESS_TOKEN_BUCKET_NAME, ACCESS_TOKEN_FILE_PATH, local_file_path)
 
         # Load the CSV file
